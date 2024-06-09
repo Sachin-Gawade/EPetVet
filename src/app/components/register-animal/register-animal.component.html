@@ -1,0 +1,97 @@
+
+<div class="container">
+    <div class="row">
+     <div class="container my-5  col-md-8" >
+    <div class="card border-info mb-3" style="max-width: 30rem;">
+      <div class="card-header text-success bg-dark"><h3>Animal Registration Form</h3></div>
+      <div class="card-body">
+        <form #addNewProd="ngForm" (ngSubmit)="submit(addNewProd)" >
+            <div class="form-group">
+                <label for="pname">Animal Name:</label>
+                <input type="text" #pname="ngModel" required name="pname" class="form-control" ngModel>
+                <div *ngIf="pname.touched&&pname.invalid" class="alert alert-danger">
+                  <p *ngIf="pname.errors?.['required']">Animal name required</p>
+                </div>
+              </div>
+
+          <div class="form-group">
+            <label for="pdesc">Enter Breed</label>
+            <input type="text" #pdesc="ngModel"  required
+              name="pdescription" class="form-control" ngModel >
+            <div *ngIf="pdesc.touched&&pdesc.invalid" class="alert alert-danger">
+              <p *ngIf="pdesc.errors?.['required']">Breed required</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="brand">Enter Date Of Birth Of Animal</label>
+            <input type="text" #brand="ngModel"  required
+              name="brand" class="form-control" ngModel >
+            <div *ngIf="brand.touched&&brand.invalid" class="alert alert-danger">
+              <p *ngIf="brand.errors?.['required']"> Date Of Birth Of Animal required</p>
+            </div>
+          </div>
+
+          
+
+          <div class="form-group">
+            <label for="phone">Enter Milk Capacity Of Animal</label>
+            <input type="number" #qty="ngModel" required    name="available_quantity" class="form-control" ngModel>
+            <!-- <div *ngIf="qty.touched&&qty.invalid" class="alert alert-danger">
+              <p *ngIf="qty.errors?.['required']">Available Quantity required</p>
+            </div> -->
+          </div>
+ 
+          <div class="form-group">
+            <label for="phone">Weight Of Animal</label>
+            <input type="number" #price="ngModel" required    name="price_per_unit" class="form-control" ngModel>
+             <div *ngIf="price.touched&&price.invalid" class="alert alert-danger">
+              <p *ngIf="price.errors?.['required']">Price per quantity required</p>
+              
+             </div>
+          </div>
+
+          <div class="form-group form-check form-switch my-4">
+            <label for="activeStatus">Is the Animal Sick</label>
+            <input class="form-check-input" type="checkbox"  #activeStatus="ngModel" name="active" id="activeStatus" checked="" ngModel>
+          </div>
+         
+          <div class="form-group  ">
+            Select The Animal Image : 
+            <input class="mx-5 my-1" type="file" required name="img_name" (change)="onSelectedFile($event)" accept="image/*" #productimg="ngModel" id="fileToUpload" ngModel>
+            <div *ngIf="productimg.touched&&productimg.invalid" class="alert alert-danger">
+              <p *ngIf="productimg.errors?.['required']">product image required</p>          
+             </div>          
+          </div>
+         
+
+          <div class="form-group">
+            <label for="category" class="form-label mt-4">Select The Animal Category</label>
+            <select class="form-select" id="category" name="cid" #category="ngModel"  ngModel >
+              <option *ngFor="let cat of cats" value={{cat.cid}}>{{cat.cname}}</option>
+              
+            </select>
+          </div>
+
+
+
+  
+          <button [disabled]="addNewProd.invalid"  class="btn btn-primary my-3" type="submit">Save Animal Details</button>
+          <button class="btn btn-danger mx-3" type="reset">Reset </button>
+          <br>
+          
+        </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 my-5">
+        <img 
+        *ngIf="imgSrc"
+        [src]="imgSrc"
+        style="height: 70%; width: 100%;"
+        alt="Card image cap">
+       
+      </div>
+    </div>  
+  </div>
